@@ -4,7 +4,7 @@
 
 [game of life example with SFML | GitHub](https://github.com/brainstew927/game-of-life/blob/master/src/gameLogic.cpp)
 
-
+[SFML](https://www.sfml-dev.org/index.php)
 
 ## Instructions
 
