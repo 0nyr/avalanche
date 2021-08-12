@@ -38,11 +38,17 @@ void MainWindow::rendering()
         // clear the window with black color
         window.clear(sf::Color::Black);
 
+
+        // create a 500x500 render-texture
+        sf::RenderTexture renderTexture;
+        renderTexture.create(500, 500);
+        renderTexture.clear(sf::Color::Blue);
+
         // draw cells here
         sf::RectangleShape AliveCell = sf::RectangleShape(
             sf::Vector2f(5, 5)
         );
-        AliveCell.setOutlineColor(sf::Color(100, 100, 100)); 
+        AliveCell.setOutlineColor(sf::Color(100, 100, 100));
         AliveCell.setFillColor(sf::Color::White);
         AliveCell.setOutlineThickness(1.f);
 
@@ -51,12 +57,18 @@ void MainWindow::rendering()
             for(int j=0; j<10; j++)
             {
                 AliveCell.setPosition(
-                    100 + i*5 + i*20, 
-                    100 + j*5 + j*20
+                    i*5 + i*20, 
+                    j*5 + j*20
                 );
-                window.draw(AliveCell);
+                renderTexture.draw(AliveCell);
             }
         }
+        renderTexture.display();
+
+        // get the target texture (where the stuff has been drawn)
+        const sf::Texture& texture = renderTexture.getTexture();
+        sf::Sprite sprite(texture);
+        window.draw(sprite);
 
         // end the current frame
         window.display();
