@@ -4,11 +4,14 @@
 
 class MainWindow {
     private:
-        sf::Window window;
+        sf::RenderWindow window;
         sf::CircleShape shape;
+
+        void rendering();
 
     public:
         MainWindow();
         ~MainWindow() = default;
-        void DisplayLoop();
+
+        void gameLoop();
 };

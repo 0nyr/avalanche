@@ -4,13 +4,17 @@
 
 [game of life example with SFML | GitHub](https://github.com/brainstew927/game-of-life/blob/master/src/gameLogic.cpp)
 
-[SFML](https://www.sfml-dev.org/index.php)
+[SFML](https://www.sfml-dev.org/index.php) and [SFML tutos](https://www.sfml-dev.org/tutorials/2.5/)
 
 #### cmake
 
 [Get started with CMake tools on linux | VSCode Tuto](https://code.visualstudio.com/docs/cpp/CMake-linux)
 
 [cmake doc (3.21.1)](https://cmake.org/cmake/help/latest/manual/cmake.1.html)
+
+#### SFML
+
+[Opening and managing a SFML window](https://www.sfml-dev.org/tutorials/2.5/window-window.php)
 
 
 
@@ -94,7 +98,6 @@ Consolidate compiler generated dependencies of target avalanche
 [100%] Built target avalanche
 (base)  ❮ onyr ★  kenzae❯ ❮ build❯❯ ./avalanche 
 ```
-
 
 ## commands
 
