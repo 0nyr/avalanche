@@ -7,13 +7,24 @@ project(avalanche VERSION 0.1.0)
 set(CMAKE_BUILD_TYPE Debug)
 
 # add source files then put them into the source variable
-file(GLOB SOURCE ./src/*.cpp)
+file(GLOB SOURCE 
+    ${PROJECT_SOURCE_DIR}/include/*.hpp
+    ${PROJECT_SOURCE_DIR}/include/gui/*.hpp
+    ${PROJECT_SOURCE_DIR}/src/gui/*.cpp
+    ${PROJECT_SOURCE_DIR}/src/*.cpp
+)
+
+# add include/
+#target_include_directories(${PROJECT_NAME} PUBLIC "./include")
+include_directories(
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/gui
+    ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/src/gui
+)
 
 # add the executable
 add_executable(${PROJECT_NAME} ${SOURCE})
-
-# add include/
-target_include_directories(${PROJECT_NAME} PUBLIC "../SFML/include" "./include")
 
 # add libraries
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system)
