@@ -1,10 +1,11 @@
 #pragma once
 
-#include <string>
+#include "SFML/Graphics.hpp"
 
 class MainWindow {
     private:
-    std::string text;
+        sf::Window window;
+        sf::CircleShape shape;
 
     public:
         MainWindow();

@@ -6,7 +6,9 @@
 
 int main()
 {
-    MainWindow mainWindow = MainWindow();
+    // WARN: Don't confuse object with pointers of objects
+    // https://stackoverflow.com/questions/14803570/non-class-type-error-in-c 
+    MainWindow mainWindow;
     mainWindow.DisplayLoop();
 
     return 0;
