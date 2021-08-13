@@ -10,13 +10,13 @@
 
 [Get started with CMake tools on linux | VSCode Tuto](https://code.visualstudio.com/docs/cpp/CMake-linux)
 
+[Getting started with cmake | RIP Tutorial](https://riptutorial.com/cmake)
+
 [cmake doc (3.21.1)](https://cmake.org/cmake/help/latest/manual/cmake.1.html)
 
 #### SFML
 
 [Opening and managing a SFML window](https://www.sfml-dev.org/tutorials/2.5/window-window.php)
-
-
 
 ## Instructions
 

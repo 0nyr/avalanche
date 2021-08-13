@@ -23,6 +23,16 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/src/gui
 )
 
+# add ressources
+file(GLOB RES_FILES
+    ${PROJECT_SOURCE_DIR}/res/fonts/silkscreen/slkscr.ttf
+    ${PROJECT_SOURCE_DIR}/res/fonts/minecraftia/Minecraftia-Regular.ttf
+)
+file(COPY ${RES_FILES} 
+    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/
+)
+#configure_file(${RES_FILES} ${CMAKE_CURRENT_BINARY_DIR}/res/ COPYONLY)
+
 # add the executable
 add_executable(${PROJECT_NAME} ${SOURCE})
 
