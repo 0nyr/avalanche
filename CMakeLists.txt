@@ -8,22 +8,18 @@ set(CMAKE_BUILD_TYPE Debug)
 
 # add source files then put them into the source variable
 file(GLOB SOURCE 
-    ${PROJECT_SOURCE_DIR}/include/*.hpp
-    ${PROJECT_SOURCE_DIR}/include/gui/*.hpp
-    ${PROJECT_SOURCE_DIR}/src/gui/*.cpp
     ${PROJECT_SOURCE_DIR}/src/*.cpp
+    ${PROJECT_SOURCE_DIR}/src/*/*.cpp
 )
 
 # add include/
 #target_include_directories(${PROJECT_NAME} PUBLIC "./include")
 include_directories(
-    ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/include/gui
-    ${PROJECT_SOURCE_DIR}/src
-    ${PROJECT_SOURCE_DIR}/src/gui
+    ${PROJECT_SOURCE_DIR}/inc/*
 )
 
 # add ressources
+#    tuto: https://stackoverflow.com/questions/46995733/how-to-set-cmake-in-order-to-add-txt-files-into-working-directory-as-resource 
 file(GLOB RES_FILES
     ${PROJECT_SOURCE_DIR}/res/fonts/silkscreen/slkscr.ttf
     ${PROJECT_SOURCE_DIR}/res/fonts/minecraftia/Minecraftia-Regular.ttf
@@ -31,7 +27,6 @@ file(GLOB RES_FILES
 file(COPY ${RES_FILES} 
     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/
 )
-#configure_file(${RES_FILES} ${CMAKE_CURRENT_BINARY_DIR}/res/ COPYONLY)
 
 # add the executable
 add_executable(${PROJECT_NAME} ${SOURCE})

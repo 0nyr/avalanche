@@ -18,6 +18,13 @@
 
 [Opening and managing a SFML window](https://www.sfml-dev.org/tutorials/2.5/window-window.php)
 
+##### button
+
+[Create a button in SFML | StackExchange](https://gamedev.stackexchange.com/questions/142308/how-to-create-a-button-in-sfml?newreg=7f438ea1e8194a20aa72034854efa888)
+
+[SFML Button class](https://termspar.wordpress.com/2019/04/11/c-sfml-textbox-and-button-classes/)
+
+
 ## Instructions
 
 Je t’ai mis les
