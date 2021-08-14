@@ -24,7 +24,6 @@
 
 [SFML Button class](https://termspar.wordpress.com/2019/04/11/c-sfml-textbox-and-button-classes/)
 
-
 ## Instructions
 
 Je t’ai mis les
@@ -85,6 +84,8 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 
 ## build & run
 
+### Manual method
+
 1. Move to`build/`.
 2. Pre-build with`cmake ..` to pre-build Makefile and sources. The`..` specify to put this build inside the cwd.
 3. Build with`make`. This generate the executable.
@@ -105,6 +106,25 @@ Consolidate compiler generated dependencies of target avalanche
 [100%] Built target avalanche
 (base)  ❮ onyr ★  kenzae❯ ❮ build❯❯ ./avalanche 
 ```
+
+
+### Automated method
+
+I made a custom `.sh` file and a custom target in CMake so that the generated `build/Makefile` has a rule `run_avalanche` target to build and run the program.
+
+1. Go to`build/`.
+2. Run`make run_avalanche`
+
+```shell
+(base)  ❮ onyr ★  kenzae❯ ❮ build❯❯ make run_avalanche
+/home/onyr/Documents/code/matthieu/avalanche/build
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/onyr/Documents/code/matthieu/avalanche/build
+Consolidate compiler generated dependencies of target avalanche
+[100%] Built target avalanche
+```
+
 
 ## commands
 
