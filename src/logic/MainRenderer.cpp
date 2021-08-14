@@ -1,6 +1,8 @@
 #include "../../inc/logic/MainRenderer.hpp"
 
-MainRenderer::MainRenderer(sf::RenderWindow & window): window(window)
+MainRenderer::MainRenderer(
+    sf::RenderWindow & window
+): window(window)
 {}
 
 void MainRenderer::render()
