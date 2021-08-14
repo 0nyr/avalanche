@@ -1,5 +1,6 @@
 #pragma once
 
+#include <list>
 #include "SFML/Graphics.hpp"
 
 /** This object basically manages all the graphics
@@ -13,5 +14,5 @@ class MainRenderer {
         MainRenderer(sf::RenderWindow & window);
         ~MainRenderer() = default;
 
-        void render();
+        void render(std::list<sf::Drawable *> & drawables);
 };

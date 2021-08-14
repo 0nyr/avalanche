@@ -131,3 +131,8 @@ Consolidate compiler generated dependencies of target avalanche
 ### CMake
 
 `cmake -S . -B ./build/`: run CMake to build the project. `-S` is the source directory where the `CMakeLists.txt` file is located.
+
+
+## TODO
+
+* [ ] Add list of UIObject and sort the list by a custom comparator, from minimum z (closest to the viewer) to max z (furthust to the viewer).

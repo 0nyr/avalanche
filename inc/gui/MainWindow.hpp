@@ -1,8 +1,10 @@
 #pragma once
 
+#include <list>
 #include "SFML/Graphics.hpp"
 #include "../../inc/logic/EventHandler.hpp"
 #include "../../inc/logic/MainRenderer.hpp"
+#include "../../inc/gui/UIObject.hpp"
 
 class MainWindow {
     private:
@@ -10,7 +12,7 @@ class MainWindow {
         EventHandler * eventHandler;
         MainRenderer * renderer;
 
-        sf::CircleShape shape;
+        std::list<sf::Drawable *> drawables;
 
         void rendering();
 

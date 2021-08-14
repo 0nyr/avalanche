@@ -2,20 +2,25 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "../../inc/gui/UIObject.hpp"
 
-class Button: sf::RectangleShape
+class Button: public UIObject
 {
     private:
         sf::IntRect box;
-            sf::RectangleShape button;
-        sf::Text text;
+        sf::RectangleShape rectContainer;
 
-        int btnWidth;
-        int btnHeight;
+        // text and font must still exist to be used
+        sf::Text * text;
+        sf::Font * font;
 
     public:
-        Button(const sf::Vector2f & size = sf::Vector2f(0, 0));
-        ~Button() = default;
+        Button(
+            sf::IntRect box = sf::IntRect(0, 0, 0, 0),
+            sf::Text * text = new sf::Text(),
+            sf::Font * font = new sf::Font()
+        );
+        ~Button();
 
         const bool IsClicked(
             const sf::Mouse Mouse, 
@@ -23,9 +28,36 @@ class Button: sf::RectangleShape
             const float Y
         );
 
-        void setFont(sf::Font &fonts);
-        void setBackgroundColor(sf::Color color);
-        void setTextColor(sf::Color color);
+        void handleEvents();
+        void draw(
+            sf::RenderTarget &target, sf::RenderStates states
+        ) const;
+
+        void setFont(sf::Font * font)
+        {
+            this->font = font;
+        }
+
+        void setBackgroundColor(const sf::Color &color)
+        {
+            this->rectContainer.setFillColor(color);
+        }
+
+        void setTextColor(const sf::Color &color)
+        {
+            this->text->setFillColor(color);
+        }
+
+        void setString(const sf::String &string)
+        {
+            this->text->setString(string);
+        }
+
+        void setCharacterSize(unsigned int size)
+        {
+            this->text->setCharacterSize(size);
+        }
+
+        void setPosition(int x, int y);
         
-   
 };
