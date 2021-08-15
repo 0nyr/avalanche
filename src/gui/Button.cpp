@@ -1,24 +1,40 @@
 #include "../../inc/gui/Button.hpp"
+#include <string>
 
 Button::Button(
     sf::IntRect box, // WARN: don't put default in implementation
     sf::Text * text,
     sf::Font * font
-): box(box), text(text)
+): box(box), text(text), font(font)
 {
     this->rectContainer = sf::RectangleShape(
         sf::Vector2f(this->box.width, this->box.height)
     );
 
-    // center the text with respect to the box background
+    // apply font to text
+    this->text->setFont(*(this->font));
+
+    // set position of internal shapes
+    std::cout << "position this->box: [" << this->box.left << ", " << this->box.top << "]" << std::endl;
+    
+    this->rectContainer.setPosition(
+        sf::Vector2f(this->box.left, this->box.top)
+    );
     this->text->setPosition(
         box.left + box.width/2 - text->getLocalBounds().width/2,
         box.top + box.height/2 - text->getLocalBounds().height/2
     );
-    
+    std::cout << text->getLocalBounds().height/2 << std::endl;
+
+    std::cout << "position this->text: [" << this->text->getPosition().x << ", " << this->text->getPosition().y << "]" << std::endl;
+    std::cout << "this->text string: " << (std::string)(this->text->getString()) << std::endl; 
+
 }
 
-Button::~Button(){}
+Button::~Button(){
+    delete this->text;
+    delete this->font;
+}
 
 void Button::setPosition(int x, int y)
 {

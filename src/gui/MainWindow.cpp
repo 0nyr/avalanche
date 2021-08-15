@@ -29,7 +29,7 @@ MainWindow::MainWindow()
     sf::Text * text = new sf::Text();
     text->setString("TESTBUTTON");
     text->setCharacterSize(24);
-    text->setFillColor(sf::Color::White);
+    text->setFillColor(sf::Color::Blue);
     Button * textButton = new Button(
         sf::IntRect(500, 550, 200, 100),
         text,
