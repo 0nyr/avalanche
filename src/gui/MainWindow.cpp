@@ -9,7 +9,7 @@ MainWindow::MainWindow()
     this->eventHandler = new EventHandler(this->window);
     this->renderer = new MainRenderer(this->window);
 
-    // [ add graphical elements ]
+    // [ add graphical elements to this->drawables ] 
     // add a circle
     sf::CircleShape * testCircle = new sf::CircleShape(70.f);
     testCircle->setFillColor(sf::Color::Green);
@@ -31,7 +31,7 @@ MainWindow::MainWindow()
     text->setCharacterSize(24);
     text->setFillColor(sf::Color::Blue);
     Button * textButton = new Button(
-        sf::IntRect(500, 550, 200, 100),
+        sf::FloatRect(500, 550, 200, 100),
         text,
         fontButton
     );

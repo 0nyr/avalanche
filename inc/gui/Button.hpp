@@ -7,7 +7,7 @@
 class Button: public UIObject
 {
     private:
-        sf::IntRect box;
+        sf::FloatRect box;
         sf::RectangleShape rectContainer;
 
         // text and font must still exist to be used
@@ -16,7 +16,7 @@ class Button: public UIObject
 
     public:
         Button(
-            sf::IntRect box = sf::IntRect(0, 0, 0, 0),
+            sf::FloatRect box = sf::FloatRect(0, 0, 0, 0),
             sf::Text * text = new sf::Text(),
             sf::Font * font = new sf::Font()
         );

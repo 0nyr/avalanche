@@ -2,7 +2,7 @@
 #include <string>
 
 Button::Button(
-    sf::IntRect box, // WARN: don't put default in implementation
+    sf::FloatRect box, // WARN: don't put default in implementation
     sf::Text * text,
     sf::Font * font
 ): box(box), text(text), font(font)
@@ -11,7 +11,7 @@ Button::Button(
         sf::Vector2f(this->box.width, this->box.height)
     );
 
-    // apply font to text
+    // apply font to text (WARN: do it first)
     this->text->setFont(*(this->font));
 
     // set position of internal shapes
@@ -20,9 +20,15 @@ Button::Button(
     this->rectContainer.setPosition(
         sf::Vector2f(this->box.left, this->box.top)
     );
+
+    sf::FloatRect textRect = text->getLocalBounds();
+    this->text->setOrigin(
+        textRect.left + textRect.width/2.0f,
+        textRect.top + textRect.height/2.0f
+    );
     this->text->setPosition(
-        box.left + box.width/2 - text->getLocalBounds().width/2,
-        box.top + box.height/2 - text->getLocalBounds().height/2
+        this->box.left + this->box.width/2.0f,
+        this->box.top + this->box.height/2.0f
     );
     std::cout << text->getLocalBounds().height/2 << std::endl;
 

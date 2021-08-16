@@ -1,3 +1,26 @@
+// [ text aligned on center of the box ]
+//declare text
+sf::Text text2;
+text2.setFont(font);
+text2.setString("RANDOMTEXT");
+text2.setCharacterSize(24);
+text2.setFillColor(sf::Color::Magenta);
+text2.setStyle(sf::Text::Regular);
+
+//center text
+sf::FloatRect textRect2 = text2.getLocalBounds();
+text2.setOrigin(
+    textRect2.left + textRect2.width/2.0f,
+    textRect2.top  + textRect2.height/2.0f
+);
+text2.setPosition(sf::Vector2f(1000.f/2.0f,1000.f/2.0f));
+window.draw(text2);
+
+
+
+
+
+
 
 // Version using sf::Texture
 // button test

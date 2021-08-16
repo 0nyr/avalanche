@@ -74,34 +74,6 @@ void MainRenderer::render(std::list<sf::Drawable *> & drawables)
 
 
 
-    // button test
-    sf::IntRect buttonBox = sf::IntRect(400, 300, 200, 100);
-
-    // draw box
-    sf::RectangleShape buttonShape = sf::RectangleShape(
-        sf::Vector2f(buttonBox.width, buttonBox.height)
-    );
-    buttonShape.setFillColor(sf::Color::Yellow);
-    buttonShape.setPosition(
-        buttonBox.left,
-        buttonBox.top
-    );
-    window.draw(buttonShape);
-    
-    // draw text
-    sf::Text buttonText;
-    buttonText.setFont(font);
-    buttonText.setString("BUTTON");
-    buttonText.setCharacterSize(24);
-    buttonText.setFillColor(sf::Color::Red);
-    buttonText.setPosition(
-        buttonBox.left + buttonBox.width/2 - buttonText.getLocalBounds().width/2,
-        buttonBox.top + buttonBox.height/2 - buttonText.getLocalBounds().height/2
-    );
-    window.draw(buttonText);
-
-
-
     // display drawables
     for (sf::Drawable * const& drawable : drawables) {
         window.draw(*drawable);
