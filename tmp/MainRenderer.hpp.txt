@@ -2,17 +2,23 @@
 
 #include <list>
 #include "SFML/Graphics.hpp"
+#include "../../inc/gui/MainWindow.hpp"
 
 /** This object basically manages all the graphics
  * 
  */
 class MainRenderer {
     private:
-        sf::RenderWindow & window;
+        MainWindow mainWindow;
 
     public:
         MainRenderer(sf::RenderWindow & window);
         ~MainRenderer() = default;
 
         void render(std::list<sf::Drawable *> & drawables);
+        void MainRenderer::render(
+            std::list<
+                std::list<sf::Drawable *> 
+            > drawableLists
+        );
 };

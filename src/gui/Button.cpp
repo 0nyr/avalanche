@@ -15,8 +15,6 @@ Button::Button(
     this->text->setFont(*(this->font));
 
     // set position of internal shapes
-    std::cout << "position this->box: [" << this->box.left << ", " << this->box.top << "]" << std::endl;
-    
     this->rectContainer.setPosition(
         sf::Vector2f(this->box.left, this->box.top)
     );
@@ -30,11 +28,6 @@ Button::Button(
         this->box.left + this->box.width/2.0f,
         this->box.top + this->box.height/2.0f
     );
-    std::cout << text->getLocalBounds().height/2 << std::endl;
-
-    std::cout << "position this->text: [" << this->text->getPosition().x << ", " << this->text->getPosition().y << "]" << std::endl;
-    std::cout << "this->text string: " << (std::string)(this->text->getString()) << std::endl; 
-
 }
 
 Button::~Button(){
@@ -65,9 +58,31 @@ const bool Button::IsClicked(
     return this->box.contains(x, y);
 }
 
-void Button::handleEvents()
+void Button::handleEvents(
+    sf::RenderWindow & window,
+    sf::Event & event
+)
 {
-    //TODO: complete function
+    // handle button hover event
+    switch (event.type)
+    {
+        case sf::Event::MouseMoved:
+        {
+            sf::Vector2i mousePos = sf::Mouse::getPosition( window );
+            sf::Vector2f mousePosF( static_cast<float>( mousePos.x ), static_cast<float>( mousePos.y ) );
+            if(this->box.contains(mousePosF))
+            {
+                // hover
+                this->rectContainer.setFillColor( sf::Color( 200, 200, 100));
+            }
+            else
+            {
+                this->rectContainer.setFillColor(sf::Color(100, 100, 50));
+            }
+        }
+        break;
+    }
+
 }
 
 void Button::draw(

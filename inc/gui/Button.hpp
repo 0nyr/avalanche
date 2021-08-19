@@ -28,10 +28,15 @@ class Button: public UIObject
             const float Y
         );
 
-        void handleEvents();
+        void handleEvents(
+            sf::RenderWindow & window,
+            sf::Event & event
+        );
         void draw(
             sf::RenderTarget &target, sf::RenderStates states
         ) const;
+
+
 
         void setFont(sf::Font * font)
         {

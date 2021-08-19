@@ -1,24 +1,27 @@
 #pragma once
 
 #include <list>
+#include <iostream>
 #include "SFML/Graphics.hpp"
-#include "../../inc/logic/EventHandler.hpp"
-#include "../../inc/logic/MainRenderer.hpp"
 #include "../../inc/gui/UIObject.hpp"
+#include "../../inc/gui/Button.hpp"
+#include "../../inc/logic/EventHandler.hpp"
 
-class MainWindow {
+class App {
     private:
         sf::RenderWindow window;
         EventHandler * eventHandler;
-        MainRenderer * renderer;
 
         std::list<sf::Drawable *> drawables;
+        std::list<UIObject *> uiObjects;
 
         void rendering();
 
     public:
-        MainWindow();
-        ~MainWindow();
+        App();
+        ~App();
 
         void gameLoop();
+        void render();
+
 };

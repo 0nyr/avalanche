@@ -83,3 +83,22 @@ void MainRenderer::render(std::list<sf::Drawable *> & drawables)
     // end the current frame
     window.display();
 }
+
+void MainRenderer::render(
+    std::list<
+        std::list<sf::Drawable *> 
+    > drawableLists
+)
+{
+    // clear the window with black color
+    window.clear(sf::Color::Black);
+
+    for(sf::Drawable * const& drawable : drawables) 
+    {
+        window.draw(*drawable);
+    }
+
+    // end the current frame
+    window.display();
+
+}

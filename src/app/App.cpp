@@ -1,13 +1,9 @@
-#include "../../inc/gui/MainWindow.hpp"
+#include "../../inc/app/App.hpp"
 
-#include <iostream>
-#include "../../inc/gui/Button.hpp"
-
-MainWindow::MainWindow() 
+App::App() 
 {
     this->window.create(sf::VideoMode(1000, 1000), "Avalanche");
     this->eventHandler = new EventHandler(this->window);
-    this->renderer = new MainRenderer(this->window);
 
     // [ add graphical elements to this->drawables ] 
     // add a circle
@@ -23,6 +19,7 @@ MainWindow::MainWindow()
     testRect->setPosition(200, 600);
     this->drawables.push_back(testRect);
 
+    // [ add UIObjects ]
     // add a Button
     sf::Font * fontButton = new sf::Font();
     fontButton->loadFromFile("./res/Minecraftia-Regular.ttf");
@@ -36,24 +33,49 @@ MainWindow::MainWindow()
         fontButton
     );
     textButton->setBackgroundColor(sf::Color::Cyan);
-    this->drawables.push_back(textButton);
+    this->uiObjects.push_back(textButton);
 
 }
 
-MainWindow::~MainWindow()
+App::~App()
 {
     delete this->eventHandler;
-    delete this->renderer;
-    this->drawables.clear();
+
+    // delete lists of pointers using .erase(begin, end)
+    this->drawables.erase(this->drawables.begin(), this->drawables.end());
+    this->uiObjects.erase(this->uiObjects.begin(), this->uiObjects.end());
     
 }
 
-void MainWindow::gameLoop() 
+void App::gameLoop() 
 {
     // run the program as long as the window is open
     while (window.isOpen())
     {
-        this->eventHandler->handleEvents();
-        this->renderer->render(drawables);
+        this->eventHandler->handleEvents(this->uiObjects);
+
+        this->render();
     }
+}
+
+void App::render()
+{
+    // clear the window with black color
+    window.clear(sf::Color::Black);
+
+    // draw drawables first
+    for(sf::Drawable * const& drawable : this->drawables) 
+    {
+        window.draw(*drawable);
+    }
+
+    // draw ioObjects next
+    for(UIObject * const& uiObject : this->uiObjects) 
+    {
+        window.draw(*uiObject);
+    }
+
+    // end the current frame
+    window.display();
+
 }
