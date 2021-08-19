@@ -12,14 +12,4 @@ class UIObject: public sf::Drawable, public Eventable
     public:
         UIObject() = default;
         virtual ~UIObject() = default;
-    
-        // inherited virtual funtions:
-        virtual void handleEvents(
-            sf::RenderWindow & window,
-        sf::Event & event
-        ) = 0;
-        
-        virtual void draw(
-            sf::RenderTarget &target, sf::RenderStates states
-        ) const = 0; // inherited from sf::Drawable
 };

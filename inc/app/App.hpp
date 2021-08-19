@@ -6,8 +6,10 @@
 #include "../../inc/gui/UIObject.hpp"
 #include "../../inc/gui/Button.hpp"
 #include "../../inc/logic/EventHandler.hpp"
+#include "../../inc/utils/ColorScheme.hpp"
 
-class App {
+class App 
+{
     private:
         sf::RenderWindow window;
         EventHandler * eventHandler;
@@ -15,13 +17,13 @@ class App {
         std::list<sf::Drawable *> drawables;
         std::list<UIObject *> uiObjects;
 
-        void rendering();
+        void tick();
+        void render();
 
     public:
         App();
         ~App();
 
         void gameLoop();
-        void render();
 
 };

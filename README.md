@@ -107,7 +107,6 @@ Consolidate compiler generated dependencies of target avalanche
 (base)  ❮ onyr ★  kenzae❯ ❮ build❯❯ ./avalanche 
 ```
 
-
 ### Automated method
 
 I made a custom `.sh` file and a custom target in CMake so that the generated `build/Makefile` has a rule `run_avalanche` target to build and run the program.
@@ -125,14 +124,13 @@ Consolidate compiler generated dependencies of target avalanche
 [100%] Built target avalanche
 ```
 
-
 ## commands
 
 ### CMake
 
 `cmake -S . -B ./build/`: run CMake to build the project. `-S` is the source directory where the `CMakeLists.txt` file is located.
 
-
 ## TODO
 
-* [ ] Add list of UIObject and sort the list by a custom comparator, from minimum z (closest to the viewer) to max z (furthust to the viewer).
+* [X]~~Add list of UIObject and sort the list by a custom comparator, from minimum z (closest to the viewer) to max z (furthust to the viewer).~~ No need for such a system since we are not in a game where elements are going to be displayed with different levels of depth depending of the y coordinate.
+* [ ] Make the actual logic of the game.

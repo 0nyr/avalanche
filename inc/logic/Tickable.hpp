@@ -5,14 +5,12 @@
 
 /** A virtual class for objects that have event response.
  */
-class Eventable
+class Tickable
 {
     public:
-        Eventable() = default;
-        virtual ~Eventable() = default;
+        Tickable() = default;
+        virtual ~Tickable() = default;
     
         // WARN: put "=0" for C++ to know it's pure virtual
-        virtual void handleEvents(
-            sf::Event & event
-        ) = 0;
+        virtual void tick() = 0;
 };

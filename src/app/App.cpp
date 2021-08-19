@@ -24,11 +24,12 @@ App::App()
     sf::Font * fontButton = new sf::Font();
     fontButton->loadFromFile("./res/Minecraftia-Regular.ttf");
     sf::Text * text = new sf::Text();
-    text->setString("TESTBUTTON");
+    text->setString("PLAY");
     text->setCharacterSize(24);
     text->setFillColor(sf::Color::Blue);
     Button * textButton = new Button(
-        sf::FloatRect(500, 550, 200, 100),
+        window,
+        sf::FloatRect(10, 10, 200, 100),
         text,
         fontButton
     );
@@ -52,16 +53,27 @@ void App::gameLoop()
     // run the program as long as the window is open
     while (window.isOpen())
     {
+        this->tick();
         this->eventHandler->handleEvents(this->uiObjects);
-
         this->render();
+    }
+}
+
+void App::tick()
+{
+    for(UIObject * uiObject : uiObjects)
+    {
+        if(dynamic_cast<Tickable *>(uiObject))
+        {
+            dynamic_cast<Tickable *>(uiObject)->tick();
+        }
     }
 }
 
 void App::render()
 {
     // clear the window with black color
-    window.clear(sf::Color::Black);
+    window.clear(sf::Color(ColorScheme::WINDOW_BG_GREY));
 
     // draw drawables first
     for(sf::Drawable * const& drawable : this->drawables) 

@@ -101,7 +101,7 @@ class EventHandler {
 
                 // check drawables events
                 for (Eventable * eventable : eventables) {
-                    eventable->handleEvents(this->window, event);
+                    eventable->handleEvents(event);
                 }
 
             }

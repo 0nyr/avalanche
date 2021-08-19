@@ -1,12 +1,19 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
 #include <SFML/Graphics.hpp>
 #include "../../inc/gui/UIObject.hpp"
+#include "../../inc/utils/ColorScheme.hpp"
+#include "../../inc/logic/Tickable.hpp"
 
-class Button: public UIObject
+class Button: public UIObject, public Tickable
 {
     private:
+        sf::RenderWindow & window;
+        sf::Clock clock;
+        bool hasBeenRecentlyClicked;
+
         sf::FloatRect box;
         sf::RectangleShape rectContainer;
 
@@ -14,22 +21,39 @@ class Button: public UIObject
         sf::Text * text;
         sf::Font * font;
 
+        // colors
+        sf::Color textColor;
+        sf::Color bgColor;
+        sf::Color borderColor;
+
+        sf::Color bgHoverColor;
+        sf::Color borderHoverColor;
+
+        sf::Color bgClickColor;
+        sf::Color borderClickColor;
+
     public:
         Button(
-            sf::FloatRect box = sf::FloatRect(0, 0, 0, 0),
-            sf::Text * text = new sf::Text(),
-            sf::Font * font = new sf::Font()
+            sf::RenderWindow & window,
+            sf::FloatRect box,
+            sf::Text * text,
+            sf::Font * font,
+            sf::Color textColor = sf::Color(ColorScheme::TEXT_WHITE),
+            sf::Color bgColor = sf::Color(ColorScheme::BG_NORMAL_DARK_GREY),
+            sf::Color borderColor = sf::Color(ColorScheme::BORDER_NORMAL),
+            sf::Color bgHoverColor = sf::Color(ColorScheme::BG_HOVER_GREY),
+            sf::Color borderHoverColor = sf::Color(ColorScheme::BORDER_HOVER_GREY),
+            sf::Color bgClickColor = sf::Color(ColorScheme::BG_CLICK_GREY),
+            sf::Color borderClickColor = sf::Color(ColorScheme::BORDER_CLICK_GREY)
         );
         ~Button();
 
-        const bool IsClicked(
-            const sf::Mouse Mouse, 
-            const float X, 
-            const float Y
+        const bool isClicked(
+            sf::Mouse::Button mouseButton = sf::Mouse::Left
         );
 
+        void tick();
         void handleEvents(
-            sf::RenderWindow & window,
             sf::Event & event
         );
         void draw(
