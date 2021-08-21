@@ -9,7 +9,7 @@ int main()
     // WARN: Don't confuse object with pointers of objects
     // https://stackoverflow.com/questions/14803570/non-class-type-error-in-c 
     App mainWindow;
-    mainWindow.gameLoop();
+    mainWindow.run();
 
     return 0;
 }

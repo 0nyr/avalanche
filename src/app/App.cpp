@@ -43,20 +43,78 @@ App::~App()
     delete this->eventHandler;
 
     // delete lists of pointers using .erase(begin, end)
-    this->drawables.erase(this->drawables.begin(), this->drawables.end());
-    this->uiObjects.erase(this->uiObjects.begin(), this->uiObjects.end());
+    this->drawables.erase(
+        this->drawables.begin(), this->drawables.end()
+    );
+    this->uiObjects.erase(
+        this->uiObjects.begin(), this->uiObjects.end()
+    );
     
 }
 
-void App::gameLoop() 
-{
-    // run the program as long as the window is open
+/** This function is contains the game loop. It runs as long
+ * as the application runs.
+ */
+void App::run()
+{   
+    // run tick variables
+    unsigned int ticks = 0;
+    sf::Uint64 timeVar; // time length between two loops
+    sf::Uint64 timer = 0; // total enlapsed time (max 1s)
+    sf::Uint64 delta = 0; // enlapsed time since last active ticking
+    double timePerTick = 
+        Constants::MICROSECS_PER_SEC/double(AppSettings::TICKS_PER_SEC);
+    sf::Uint64 currentTime;
+    sf::Uint64 lastTime = this->getTime();
+    
+
+    // gameloop - run the program as long as the window is open
     while (window.isOpen())
     {
-        this->tick();
-        this->eventHandler->handleEvents(this->uiObjects);
-        this->render();
+        currentTime = this->getTime();
+        timeVar = currentTime - lastTime;
+        timer += timeVar;
+        delta += timeVar;
+        lastTime = currentTime;
+
+        // sleep to avoid saturating processor with computations
+        try
+        {
+            using namespace std::chrono_literals;
+            std::this_thread::sleep_for(1ms);
+        }
+        catch(std::exception const & exc)
+        {
+            std::cout << 
+                "[ERROR]: error while trying to sleep. " <<
+                exc.what()
+            << std::endl;
+        } 
+
+        if(delta/timePerTick >= 1)
+        {
+            // active ticking
+            this->tick();
+            this->eventHandler->handleEvents(this->uiObjects);
+            this->render();
+
+            ticks++;
+            delta -= timePerTick;
+        }
+
+        if(timer >= Constants::MICROSECS_PER_SEC)
+        {
+            // VERB: log ticks/s
+            std::cout << "Ticks/s: " << ticks << std::endl;
+
+            ticks = 0;
+            timer = 0;
+        }
+        
     }
+
+    // ends program
+    this->stop();
 }
 
 void App::tick()
@@ -90,4 +148,19 @@ void App::render()
     // end the current frame
     window.display();
 
+}
+
+/** Clear ressources before app ends.
+ */
+void App::stop()
+{
+    // TODO:finish method
+}
+
+/** Get curent time in microseconds.
+ * OPTI: inline here, means to replace the function by its code
+ */
+inline sf::Uint64 App::getTime()
+{
+    return this->clock.getElapsedTime().asMicroseconds();
 }
