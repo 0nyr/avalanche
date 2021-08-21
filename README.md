@@ -6,6 +6,28 @@
 
 [SFML](https://www.sfml-dev.org/index.php) and [SFML tutos](https://www.sfml-dev.org/tutorials/2.5/)
 
+#### C++ recalls
+
+[basic object instantiation: heap vs stack](https://stackoverflow.com/questions/677632/different-methods-for-instantiating-an-object-in-c)
+
+There are two ways to make/create an object in c++.
+
+First one is :
+
+```cpp
+MyClass myclass; // if you only need to call the default constructor  
+MyClass myclass(12); // if you need to call constructor with parameters*
+```
+
+Second one is :
+
+```cpp
+MyClass *myclass = new MyClass();// if you only need to call the default constructor
+MyClass *myclass = new MyClass(12);// if you need to call constructor with parameters
+```
+
+In c++ if you use the `new` keyword, object will be stored in heap.
+
 #### cmake
 
 [Get started with CMake tools on linux | VSCode Tuto](https://code.visualstudio.com/docs/cpp/CMake-linux)

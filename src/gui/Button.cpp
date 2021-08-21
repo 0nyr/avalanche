@@ -112,7 +112,7 @@ void Button::handleEvents(
     sf::Event & event
 )
 {   
-    switch (event.type)
+    switch(event.type)
     {
         // handle button hover event
         case sf::Event::MouseMoved:

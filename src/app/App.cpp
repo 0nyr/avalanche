@@ -3,7 +3,7 @@
 App::App() 
 {
     this->window.create(sf::VideoMode(1000, 1000), "Avalanche");
-    this->eventHandler = new EventHandler(this->window);
+    this->keyEventManager = new KeyEventManager(this->window);
 
     // [ add graphical elements to this->drawables ] 
     // add a circle
@@ -40,7 +40,7 @@ App::App()
 
 App::~App()
 {
-    delete this->eventHandler;
+    delete this->keyEventManager;
 
     // delete lists of pointers using .erase(begin, end)
     this->drawables.erase(
@@ -95,7 +95,7 @@ void App::run()
         {
             // active ticking
             this->tick();
-            this->eventHandler->handleEvents(this->uiObjects);
+            this->event();
             this->render();
 
             ticks++;
@@ -125,6 +125,31 @@ void App::tick()
         {
             dynamic_cast<Tickable *>(uiObject)->tick();
         }
+    }
+}
+
+void App::event()
+{
+    // base event handling
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+        // check general events
+        switch (event.type)
+        {
+            // window closed
+            case sf::Event::Closed:
+                window.close();
+                break;
+
+            // we don't process other types of events
+            default:
+                break;
+        }
+
+        // handle events of objects & object lists
+        this->handleEvents(this->uiObjects, event);
+        this->keyEventManager->handleEvents(event);
     }
 }
 
