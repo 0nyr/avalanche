@@ -11,6 +11,7 @@
 #include "../../inc/app/AppSettings.hpp"
 #include "../../inc/utils/Constants.hpp"
 #include "../../inc/logic/KeyEventsManager.hpp"
+#include "../../inc/gui/Board.hpp"
 
 class App 
 {

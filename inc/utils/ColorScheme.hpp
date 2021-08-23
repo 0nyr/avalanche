@@ -18,6 +18,11 @@ class ColorScheme
         static sf::Uint32 const BG_CLICK_GREY = 0x7b8c9fff;
         static sf::Uint32 const BORDER_CLICK_GREY = TEXT_WHITE;
 
-
+        // cell colors
+        static sf::Uint32 const CELL_LEVEL_0 = 0x213245ff;
+        static sf::Uint32 const CELL_LEVEL_1 = 0x28415cff;
+        static sf::Uint32 const CELL_LEVEL_2 = 0x2e5f7fff;
+        static sf::Uint32 const CELL_LEVEL_3 = 0x3d8db8ff;
+        static sf::Uint32 const CELL_LEVEL_4 = 0x6fbbd3ff;
 };
 

@@ -5,7 +5,8 @@ App::App()
     this->window.create(sf::VideoMode(1000, 1000), "Avalanche");
     this->keyEventManager = new KeyEventManager(this->window);
 
-    // [ add graphical elements to this->drawables ] 
+    // [ add graphical elements to this->drawables ]
+    /*
     // add a circle
     sf::CircleShape * testCircle = new sf::CircleShape(70.f);
     testCircle->setFillColor(sf::Color::Green);
@@ -18,6 +19,7 @@ App::App()
     );
     testRect->setPosition(200, 600);
     this->drawables.push_back(testRect);
+    */
 
     // [ add UIObjects ]
     // add a Button
@@ -36,6 +38,13 @@ App::App()
     textButton->setBackgroundColor(sf::Color::Cyan);
     this->uiObjects.push_back(textButton);
 
+    // add Board
+    Board * board = new Board(
+        window,
+        sf::FloatRect(220, 100, 500, 400)
+    );
+    this->uiObjects.push_back(board);
+
 }
 
 App::~App()
@@ -52,7 +61,7 @@ App::~App()
     
 }
 
-/** This function is contains the game loop. It runs as long
+/** This function contains the game loop. It runs as long
  * as the application runs.
  */
 void App::run()

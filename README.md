@@ -155,7 +155,9 @@ Consolidate compiler generated dependencies of target avalanche
 ## TODO
 
 * [X]~~Add list of UIObject and sort the list by a custom comparator, from minimum z (closest to the viewer) to max z (furthust to the viewer).~~ No need for such a system since we are not in a game where elements are going to be displayed with different levels of depth depending of the y coordinate.
-* [ ] Make a 2D array contiguous in memory of ints representing snow amount in each cell.
+* [X] Make a 2D array contiguous in memory of ints representing snow amount in each cell.
+* [ ] Understand how to specify`-std=c++1z` as a linking flag with`CMake`.
+* [ ] Fix board evolution not displayed.
 * [ ] Make a function to get the index of the cell given the mouse coordinates.
 * [ ] Make a eventHandle() function to handle right and left mouse click to add/remove snow in clicked cell.
 * [ ] Make a pause/continue system based on the button.
