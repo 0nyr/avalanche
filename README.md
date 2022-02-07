@@ -108,9 +108,9 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 
 ### Manual method
 
-1. Move to`build/`.
-2. Pre-build with`cmake ..` to pre-build Makefile and sources. The`..` specify to put this build inside the cwd.
-3. Build with`make`. This generate the executable.
+1. Move to `build/`.
+2. Pre-build with `cmake ..` to pre-build Makefile and sources. The `..` specify to put this build inside the cwd.
+3. Build with `make`. This generate the executable.
 4. Run the executable.
 
 Example:
@@ -133,8 +133,8 @@ Consolidate compiler generated dependencies of target avalanche
 
 I made a custom `.sh` file and a custom target in CMake so that the generated `build/Makefile` has a rule `run_avalanche` target to build and run the program.
 
-1. Go to`build/`.
-2. Run`make run_avalanche`
+1. Go to `build/`.
+2. Run `make run_avalanche`
 
 ```shell
 (base)  ❮ onyr ★  kenzae❯ ❮ build❯❯ make run_avalanche
@@ -152,11 +152,40 @@ Consolidate compiler generated dependencies of target avalanche
 
 `cmake -S . -B ./build/`: run CMake to build the project. `-S` is the source directory where the `CMakeLists.txt` file is located.
 
+#### weird problem with CMAKE
+
+I had suddenly this problem, while trying to recompile the project months after... I went to `./build/` and tried to build using `cmake ..`:
+
+```shell
+(base)  ❮ onyr ★  kenzae❯ ❮ build❯❯ cmake ..
+-- The CXX compiler identification is unknown
+CMake Error at CMakeLists.txt:4 (project):
+  The CMAKE_CXX_COMPILER:
+
+    /usr/bin/x86_64-linux-gnu-g++-7
+
+  is not a full path to an existing compiler tool.
+
+  Tell CMake where to find the compiler by setting either the environment
+  variable "CXX" or the CMake cache entry CMAKE_CXX_COMPILER to the full path
+  to the compiler, or to the compiler name if it is in the PATH.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/onyr/Documents/code/matthieu/avalanche/build/CMakeFiles/CMakeOutput.log".
+See also "/home/onyr/Documents/code/matthieu/avalanche/build/CMakeFiles/CMakeError.log".
+```
+
+I solved the issue by telling explicitly which path to use in CMake, thanks to [StackOverflow](.
+
+`sudo cmake -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ ..` : Here, the `sudo` is mandatory.
+
+
 ## TODO
 
 * [X]~~Add list of UIObject and sort the list by a custom comparator, from minimum z (closest to the viewer) to max z (furthust to the viewer).~~ No need for such a system since we are not in a game where elements are going to be displayed with different levels of depth depending of the y coordinate.
 * [X] Make a 2D array contiguous in memory of ints representing snow amount in each cell.
-* [ ] Understand how to specify`-std=c++1z` as a linking flag with`CMake`.
+* [ ] Understand how to specify `-std=c++1z` as a linking flag with `CMake`.
 * [ ] Fix board evolution not displayed.
 * [ ] Make a function to get the index of the cell given the mouse coordinates.
 * [ ] Make a eventHandle() function to handle right and left mouse click to add/remove snow in clicked cell.
